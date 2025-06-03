@@ -11,75 +11,60 @@ public class AutorTest {
     private Autor autor;
 
     @BeforeEach
-    public void setup(){
-
-        autor = new Autor(1, "Jesus", "Flores", "Ecuador", "Quito, Av. Simon Bolivar", "0914768952", "jesusfl111@gmail.com.ec" );
-
+    public  void setup(){
+      autor = new Autor(0001, "Paul", "Silvana", "Ecuador", "Av. de los Andes", "0947538635", "pauli@ejemplo.com");
     }
 
     @Test
-    public void testAutorConstructorandGetter(){
-        assertAll("Validar datos Cliente, Constructor y Getters",
-                () -> assertEquals(1, autor.getIdAutor()),
-                () -> assertEquals("Jesus", autor.getNombre()),
-                () -> assertEquals("Flores", autor.getApellido()),
+    public void TestAutorConstructorAndGetters(){
+
+        assertAll("Validar datos Autor, Constructor, y Getters",
+                () -> assertEquals(0001, autor.getIdAutor()),
+                () -> assertEquals("Paul", autor.getNombre()),
+                () -> assertEquals("Silvana", autor.getApellido()),
                 () -> assertEquals("Ecuador", autor.getPais()),
-                () -> assertEquals("Quito, Av. Simon Bolivar", autor.getDireccion()),
-                () -> assertEquals("0914768952", autor.getTelefono()),
-                () -> assertEquals("jesusfl111@gmail.com.ec", autor.getCorreo())
+                () -> assertEquals("Av. de los Andes", autor.getDireccion()),
+                () -> assertEquals("0947538635", autor.getTelefono()),
+                () -> assertEquals("pauli@ejemplo.com", autor.getCorreo())
 
-                );
-
-
+        );
     }
 
     @Test
-    public void testClienteSetters(){
+    public void testAutorSetters(){
 
         autor.setIdAutor(2);
-        autor.setNombre("Jose");
-        autor.setApellido("Balseca");
-        autor.setPais("Ecuador");
-        autor.setDireccion("Quito, Av. Del ciclista");
-        autor.setTelefono("0914789352");
-        autor.setCorreo("josebalssfl111@gmail.com.ec");
+        autor.setNombre("Paulina");
+        autor.setApellido("Silva");
+        autor.setPais("Colombia");
+        autor.setDireccion("Av. Siempre Viva");
+        autor.setTelefono("0987654321");
+        autor.setCorreo("paulina@ejemplo.com");
 
-        assertAll("Validar Datos Cliente Setters",
+        assertAll("Validar datos Autor, Setters",
                 () -> assertEquals(2, autor.getIdAutor()),
-                () -> assertEquals("Jose", autor.getNombre()),
-                () -> assertEquals("Balseca", autor.getApellido()),
-                () -> assertEquals("Ecuador", autor.getPais()),
-                () -> assertEquals("Quito, Av. Del ciclista", autor.getDireccion()),
-                () -> assertEquals("0914789352", autor.getTelefono()),
-                () -> assertEquals("josebalssfl111@gmail.com.ec", autor.getCorreo())
-
-
-                );
-
-
-
+                () -> assertEquals("Paulina", autor.getNombre()),
+                () -> assertEquals("Silva", autor.getApellido()),
+                () -> assertEquals("Colombia", autor.getPais()),
+                () -> assertEquals("Av. Siempre Viva", autor.getDireccion()),
+                () -> assertEquals("0987654321", autor.getTelefono()),
+                () -> assertEquals("paulina@ejemplo.com", autor.getCorreo())
+        );
     }
-
 
     @Test
     public void testAutorToString(){
         String str = autor.toString();
-
-        assertAll("Validar Datos Cliente To String",
-                () -> assertTrue(str.contains("1")),
-                () -> assertTrue(str.contains("Jesus")),
-                () -> assertTrue(str.contains("Flores")),
+        assertAll("Validar Datos Autor - ToString",
+                () -> assertTrue(str.contains("0001")),
+                () -> assertTrue(str.contains("Paul")),
+                () -> assertTrue(str.contains("Silvana")),
                 () -> assertTrue(str.contains("Ecuador")),
-                () -> assertTrue(str.contains("Quito, Av. Simon Bolivar")),
-                () -> assertTrue(str.contains("0914768952")),
-                () -> assertTrue(str.contains("jesusfl111@gmail.com.ec"))
-
-                );
-
+                () -> assertTrue(str.contains("Av. de los Andes")),
+                () -> assertTrue(str.contains("0947538635")),
+                () -> assertTrue(str.contains("pauli@ejemplo.com"))
+        );
     }
-
-
-
 
 
 }

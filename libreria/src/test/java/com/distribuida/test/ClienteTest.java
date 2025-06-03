@@ -1,7 +1,8 @@
 package com.distribuida.test;
 
 
-import org.distribuida.entities.cliente;
+
+import com.distribuida.entities.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,26 +10,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ClienteTest {
 
-    private cliente cliente;
+    private Cliente cliente;
 
 
     @BeforeEach
     public void setup(){
 
-        cliente = new cliente(1,"1753352515", "Ara","Chupin",
+        cliente = new Cliente(1,"1753352515", "Ara","Chupin",
                 "Tumbaco" ,"911","pepe@gmail.com");
     }
 
     @Test
     public void testClienteConstructorandGetter(){
         assertAll("Validar datos Cliente, Constructor y Getters",
-                () -> assertEquals(1, cliente.getIdCliente()),
-                () -> assertEquals("17434123312", cliente.getCedula()),
-                () -> assertEquals("Jesus", cliente.getNombre()),
-                () -> assertEquals("Taipa", cliente.getApellido()),
-                () -> assertEquals("Av. Americas", cliente.getDireccion()),
-                () -> assertEquals("077899955", cliente.getTelefono()),
-                () -> assertEquals("dasdeasd@gmail.com", cliente.getCorreo())
+                () -> assertEquals(1,  cliente.getIdCliente()),
+                () -> assertEquals("1753352515", cliente.getCedula()),
+                () -> assertEquals("Ara", cliente.getNombre()),
+                () -> assertEquals("Chupin", cliente.getApellido()),
+                () -> assertEquals("Tumbaco", cliente.getDireccion()),
+                () -> assertEquals("911", cliente.getTelefono()),
+                () -> assertEquals("pepe@gmail.com", cliente.getCorreo())
         );
     }
 

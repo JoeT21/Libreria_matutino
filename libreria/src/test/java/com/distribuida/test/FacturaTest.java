@@ -1,5 +1,6 @@
 package com.distribuida.test;
 
+
 import com.distribuida.entities.Cliente;
 import com.distribuida.entities.Factura;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,57 +16,63 @@ public class FacturaTest {
     private Cliente cliente;
 
     @BeforeEach
-    public void setup(){
-        factura = new Factura();
+    public void setup() throws Exception {
+        // Crear Cliente
+        cliente = new Cliente(1, "1736548953", "Juan", "Guarnizo", "Av. Cualquiera", "094576952861", "ejemplo@gmail.com");
 
-        cliente = new Cliente(1,"176123031265","Juan","Av.Americas","Taipe","0991654355","jauntaioe@gmail.com");
 
-        factura.setIdFactura(1);
-       factura.setNumFactura("FAC-00001");
-       factura.setFecha(new Date());
-       factura.setTotalNeto(100.00);
-       factura.setIva(15.00);
-       factura.setTotal(115.00);
-        //inyeccion de dependencias
-       factura.setCliente(cliente);
+
     }
 
     @Test
-    public void testFacturaConstructorAndGetters(){
-
-        assertAll("Validar datos factura",
+    public void testFacturaConstructorAndGetters() {
+        assertAll("Validar datos Factura, Constructor y Getters",
                 () -> assertEquals(1, factura.getIdFactura()),
-                () -> assertEquals("FAC-00001", factura.getNumFactura()),
+                () -> assertEquals("F-001", factura.getNumFactura()),
                 //() -> assertEquals(new Date(), factura.getFecha()),
-                () -> assertEquals(100.00, factura.getTotalNeto()),
-                () -> assertEquals(15.00, factura.getIva()),
-                () -> assertEquals(115.00, factura.getTotal()),
+                () -> assertEquals(100.0, factura.getTotalNeto()),
+                () -> assertEquals(12.0, factura.getIva()),
+                () -> assertEquals(112.0, factura.getTotal()),
                 () -> assertEquals("Juan", factura.getCliente().getNombre())
-
         );
-
     }
-
-
 
     @Test
-    public void testFacturaToString(){
-        String str = factura.toString();
-        assertAll("Validar datos factura",
-                () -> assertTrue(str.contains("1")),
-                () -> assertTrue(str.contains("FAC-00001")),
-                () -> assertTrue(str.contains("100.0")),
-                () -> assertTrue(str.contains("15.0")),
-                () -> assertTrue(str.contains("115.0")),
-                () -> assertTrue(str.contains("Juan")), //parte del objeto cliente - Inyeccion de dependencias
-                () -> assertTrue(str.contains("0991654355")) //parte del objeto cliente - Inyeccion de dependencias
+    public void testFacturaSetters() throws Exception {
 
-                );
+        factura.setIdFactura(2);
+        factura.setNumFactura("F-002");
+        //factura.setFecha(new Date());
+        factura.setTotalNeto(200.0);
+        factura.setIva(24.0);
+        factura.setTotal(224.0);
 
+        Cliente nuevoCliente = new Cliente(2, "1234567890", "Ana", "Pérez", "Av. Siempre Viva", "0987654321", "ana@example.com");
+        factura.setCliente(nuevoCliente);
 
+        assertAll("Validar datos Factura, Setters",
+                () -> assertEquals(2, factura.getIdFactura()),
+                () -> assertEquals("F-002", factura.getNumFactura()),
+                //() -> assertEquals(new Date(), factura.getFecha()),
+                () -> assertEquals(200.0, factura.getTotalNeto()),
+                () -> assertEquals(24.0, factura.getIva()),
+                () -> assertEquals(224.0, factura.getTotal()),
+                () -> assertEquals(nuevoCliente, factura.getCliente())
+        );
     }
 
-
-
-
+    @Test
+    public void testFacturaToString() {
+        String str = factura.toString();
+        assertAll("Validar toString de Factura",
+                () -> assertTrue(str.contains("1")),
+                () -> assertTrue(str.contains("F-001")),
+                //() -> assertTrue(str.contains("new Date()")),
+                () -> assertTrue(str.contains("100.0")),
+                () -> assertTrue(str.contains("12.0")),
+                () -> assertTrue(str.contains("112.0")),
+                () -> assertTrue(str.contains("Juan")),
+                () -> assertTrue(str.contains("ejemplo@gmail.com"))
+        );
+    }
 }
